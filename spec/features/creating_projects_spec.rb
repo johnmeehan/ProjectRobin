@@ -5,7 +5,7 @@ feature 'Creating Projects' do
     visit '/'
     click_link 'New Project'
     fill_in 'Name', with: 'TextMate 2'
-    fill_in 'Destription', with: 'A text-editor for OS X'
+    fill_in 'Description', with: 'A text-editor for OS X'
     click_button 'Create Project'
 
     expect(page).to have_content('Project has been created.')

@@ -5,7 +5,7 @@
 # directories %w(app lib config test spec feature)
 
 ## Uncomment to clear the screen before every task
-# clearing :on
+clearing :on
 
 ## Guard internally checks for changes in the Guardfile and exits.
 ## If you want Guard to automatically start up again, run guard in a
@@ -41,7 +41,7 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: "bin/rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
