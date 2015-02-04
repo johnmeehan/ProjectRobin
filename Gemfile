@@ -47,3 +47,8 @@ end
 group :test do
   gem 'capybara'
 end
+group :development do
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-livereload', require: false
+end
