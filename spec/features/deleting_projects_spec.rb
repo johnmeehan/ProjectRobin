@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "DeletingProjects", type: :feature do
+  before do
+    sign_in_as!(FactoryGirl.create(:admin_user))
+  end
   scenario "Deleting a project" do
     FactoryGirl.create(:project, name: "TextMate 2")
 
