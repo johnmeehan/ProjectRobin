@@ -6,6 +6,7 @@ RSpec.feature "DeletingTickets", type: :feature do
   let!(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
 
   before do
+    define_permission!(user, "view", project)
     sign_in_as!(user)
     visit root_path
     click_link project.name

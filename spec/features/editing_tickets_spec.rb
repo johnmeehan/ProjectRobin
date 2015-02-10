@@ -10,6 +10,7 @@ RSpec.feature "Editing Tickets", type: :feature do
    end
 
   before do
+    define_permission!(user, "view", project)
     sign_in_as!(user)
     visit root_path
     click_link project.name
