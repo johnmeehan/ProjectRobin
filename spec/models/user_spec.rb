@@ -1,9 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  describe 'requires an email' do
+    it "requires and email" do
+      u = User.new(name: "steve", password: "hunter2", password_confirmation: "hunter2")
+      u.save
+      expect(u).to_not be_valid
+    end
+  end
   describe 'password' do
     it "needs a password and confirmation to save" do
-      u = User.new(name: "steve")
+      u = User.new(name: "steve", email: "steve@example.com")
       u.save
       expect(u).to_not be_valid
 
@@ -18,13 +26,13 @@ RSpec.describe User, type: :model do
     end
 
     it "needs password and confirmation to match" do
-      u = User.create(name: "steve", password: "hunter2", password_confirmation: "hunter")
+      u = User.create(name: "steve",  email: "steve@example.com",password: "hunter2", password_confirmation: "hunter")
       expect(u).to_not be_valid
     end
   end
 
   describe 'authentication' do
-    let(:user) { User.create(name: "steve", password: "hunter2", password_confirmation: "hunter2") }
+    let(:user) { User.create(name: "steve", email: "steve@example.com", password: "hunter2", password_confirmation: "hunter2") }
 
     it "authenticeates with a correct password" do
       expect(user.authenticate("hunter2")).to be
