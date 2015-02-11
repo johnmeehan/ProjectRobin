@@ -1,3 +1,4 @@
+# Feature helper to sign in via capybara
 module AuthenticationHelpers
   def sign_in_as!(user)
     visit '/signin'
@@ -8,7 +9,7 @@ module AuthenticationHelpers
   end
 end
 
-
+# Controller helper to sign in by setting the session id
 module AuthHelpers
     def sign_in(user)
       session[:user_id] = user.id
