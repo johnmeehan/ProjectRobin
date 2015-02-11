@@ -7,6 +7,7 @@ RSpec.feature "DeletingTickets", type: :feature do
 
   before do
     define_permission!(user, "view", project)
+    define_permission!(user, "delete tickets", project)
     sign_in_as!(user)
     visit root_path
     click_link project.name
