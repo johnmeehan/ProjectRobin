@@ -1,6 +1,12 @@
 module Admin::PermissionsHelper
 # Method returns a hash containing permissions configurable by admins
 	def permissions
-		{ "view" => "View" }
+		{ 
+			"view" => "View",
+			"create tickets" => "Create Tickets", 
+			"edit tickets" => "Edit Tickets",
+			"delete tickets" => "Delete Tickets"
+
+		}
 	end
 end
