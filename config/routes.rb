@@ -6,7 +6,8 @@ Rails.application.routes.draw do
       put "permissions", to: "permissions#set", as: "set_permissions"
     end
   end
-
+  resources :files
+  
   root "projects#index"
   resources :users
   resources :projects do
