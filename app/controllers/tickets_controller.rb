@@ -7,7 +7,8 @@ class TicketsController < ApplicationController
   before_action :authorize_delete!, only: [:destroy]
   def new
     @ticket = @project.tickets.build
-    3.times { @ticket.assets.build }
+    # 3.times { @ticket.assets.build }
+    @ticket.assets.build
   end
 
   def create
@@ -20,7 +21,6 @@ class TicketsController < ApplicationController
       flash[:alert] = "Ticket has not been created."
       render "new"
     end
-
   end
 
   def show
