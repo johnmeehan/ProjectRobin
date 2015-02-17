@@ -13,6 +13,6 @@ User.create(email: "admin@example.com",
 	admin: true)
 Project.find_or_create_by(name: "Ticketee Beta")
 
-State.find_or_create_by(name: 'New', background: "#85FF00", color: 'white')
+State.find_or_create_by(name: 'New', background: "#85FF00", color: 'white', default: true)
 State.find_or_create_by(name: 'Open', background: "#00CFFD", color: 'white')
 State.find_or_create_by(name: 'Closed', background: "black", color: 'white')
