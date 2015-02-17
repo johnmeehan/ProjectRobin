@@ -33,6 +33,7 @@ RSpec.feature "Creating Comments", type: :feature do
 	end
 
 	scenario 'Changing a tickets state' do 
+		define_permission!(user, "change states", project)
 		click_link ticket.title
 		fill_in 'Text', with: 'This is a real issue'
 		select 'Open', from: 'State'
@@ -44,6 +45,11 @@ RSpec.feature "Creating Comments", type: :feature do
 		within("#comments") do
 			expect(page).to have_content "State: Open"
 		end
+	end
+
+	scenario 'A user without permission cannot change the state' do
+	  click_link ticket.title
+	  expect { find("#comment_state_id") }.to raise_error(Capybara::ElementNotFound)
 	end
 
 end
