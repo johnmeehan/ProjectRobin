@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :permissions
       put "permissions", to: "permissions#set", as: "set_permissions"
     end
+    resources :states
   end
   resources :files
   
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
 
   get '/signin', to: "sessions#new"
   post '/signin', to: "sessions#create"
-
   delete '/signout', to: 'sessions#destroy', as: 'signout'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
