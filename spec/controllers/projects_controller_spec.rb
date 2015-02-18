@@ -26,9 +26,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
     end
   end
-
-
-
+  
   it "cannot access the show action without permission" do
     project = FactoryGirl.create(:project)
     get :show, id: project.id

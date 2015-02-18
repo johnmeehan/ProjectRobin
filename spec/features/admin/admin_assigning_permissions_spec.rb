@@ -8,13 +8,14 @@ RSpec.feature "Admin::AssigningPermissions", type: :feature do
 		let!(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
 
 		before do
-			State.create!(name: 'Open')
 			# Get to the permissions page
 			sign_in_as! admin
 			click_link 'Admin'
 			click_link 'Users'
 			click_link user.email
 			click_link 'Permissions'
+
+			State.create!(name: 'Open')
 		end
 
 		scenario 'Viewing a Project' do
@@ -71,9 +72,11 @@ RSpec.feature "Admin::AssigningPermissions", type: :feature do
 		  expect(page).to have_content("Ticket has been deleted.")
 		end
 
-		scenario 'Changing states for a ticket' do
+		scenario 'Changing states for a ticket', js: true do
 		  check_permission_box "view", project
 		  check_permission_box "change_states", project
+		  check_permission_box "create_tickets", project
+
 		  click_button 'Update'
 		  click_link "Sign out"
 
@@ -85,6 +88,10 @@ RSpec.feature "Admin::AssigningPermissions", type: :feature do
 		  click_button "Create Comment"
 
 		  expect(page).to have_content "Comment has been created."
+		  expect(page).to have_content "Opening this ticket."
+		  # within("#comments .state") do 
+		  # 	expect(page).to have_content("Open")
+		  # end
 		  within("#ticket .state") do 
 		  	expect(page).to have_content("Open")
 		  end

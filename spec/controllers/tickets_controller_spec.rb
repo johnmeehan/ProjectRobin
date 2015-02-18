@@ -58,8 +58,5 @@ RSpec.describe TicketsController, type: :controller do
       message = "You cannot delete tickets from this project."
       expect(flash[:alert]).to eql(message)
     end
-
-
-
   end
 end

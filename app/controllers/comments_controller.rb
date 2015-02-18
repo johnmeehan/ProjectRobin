@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 	before_action :set_ticket
 
 	def create
-		@comment = @ticket.comments.build(comment_params)
+		@comment = @ticket.comments.build(sanitize_parameters!)
 		@comment.user = current_user
 		if @comment.save
 			flash[:notice] = 'Comment has been created.'
@@ -16,6 +16,13 @@ class CommentsController < ApplicationController
 	end
 
 	private
+	def sanitize_parameters!
+		if current_user.admin? || can?(:"change states", @ticket.project)
+			comment_params				
+		else
+			params.require(:comment).permit(:text)
+		end
+	end
 
 	def set_ticket
 		@ticket = Ticket.find(params[:ticket_id])
