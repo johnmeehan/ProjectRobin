@@ -1,0 +1,26 @@
+<header class="header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="<%= root_path %>" class="navbar-brand">
+          <%= image_tag "robin50.png" ,{id: "logo-image"}%>
+        </a>
+        <h2 id="logo"class="text-muted">ProjectRobin</h2>
+    
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li class="navbar-text">Signed in as <%= current_user.email %></li>
+          <li><%= link_to "Projects", projects_path %></li>
+            <% admins_only do %>
+              <li><%= link_to "Admin", admin_root_path %></li>
+            <% end %>
+          <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_path %></li>
+          <li><%= link_to "Sign in", signin_path %></li>
+        <% end %>
+      </ul>
+      </div>
+  </nav>
+</header>

@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
     # to signout set the session id to nil
     session[:user_id] = nil
     flash[:notice] = "Signed out successfully."
+    #FIXME: root url is currently projects index which is protected.
     redirect_to root_url
   end
 end
