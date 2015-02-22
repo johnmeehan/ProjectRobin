@@ -1,8 +1,25 @@
-<%= link_to "New State", new_admin_state_path %>
+<div class="row">
+	<div class="col-md-2">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<%= link_to "New State", new_admin_state_path %>
+			</li>
+		</ul>
+	</div>
 
-<ul id="states">
-	<% for state in @states %>
-		<li id="state_<%= state.id %>"><%= state.name %>
-		<%= link_to 'Make Default', make_default_admin_state_path(state) %></li>
-	<% end %>
-</ul>
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			
+			<div class="panel-heading">
+				States
+			</div>
+
+			<ul id="states" class="list-group">
+				<% for state in @states %>
+					<li class="list-group-item" id="state_<%= state.id %>"><%= state.name %>
+					<%= link_to 'Make Default', make_default_admin_state_path(state) %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,6 +1,24 @@
-<%= link_to "New User", new_admin_user_path %>
-<ul id="users">
-  <% @users.each do |user| %>
-    <li><%= link_to user, [:admin, user] %></li>
-  <% end %>
-</ul>
+<div class="row">
+	<div class="col-md-2">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<%= link_to "New User", new_admin_user_path %>
+			</li>
+		</ul>		
+	</div>	
+
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			
+			<div class="panel-heading">
+				Users				
+			</div>
+								
+			<ul id="users" class="list-group">
+			  <% @users.each do |user| %>
+			    <li class="list-group-item"><%= link_to user, [:admin, user] %></li>
+			  <% end %>
+			</ul>
+		</div>		
+	</div>
+</div>
