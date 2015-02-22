@@ -8,23 +8,24 @@
 				<small id='author'>Created by <%= @ticket.user.email %></small>
 			</h4>
 
-		  <div class="well well-lg">
-		  	<p class="lead">
+		  <div class="panel panel-default">
+		  	<div class="panel-body">
 		  		<%= simple_format(@ticket.description) %>
-		  	</p>
-		  </div>
-
-		  <% if @ticket.assets.exists? %>
-				<h3>Attached Files</h3>
-				<div class="assets">
-					<% @ticket.assets.each do |asset| %>
-							<p>
-								<%= link_to File.basename(asset.asset.path), file_path(asset) %>
-							</p>
-							<p><small><%= number_to_human_size(asset.asset.size)%></small></p>
+		  	</div>
+		  	<ul class="list-group">
+		  		<% if @ticket.assets.exists? %>
+						<h4 class="list-group-item">Attached Files</h4>
+						<div class="assets list-group-item">
+							<% @ticket.assets.each do |asset| %>
+									<p>
+										<%= link_to File.basename(asset.asset.path), file_path(asset) %>
+									</p>
+									<p><small><%= number_to_human_size(asset.asset.size)%></small></p>
+							<% end %>
+						</div>
 					<% end %>
-				</div>
-			<% end %>
+		  	</ul>
+		  </div>
 
 
 		</div>
