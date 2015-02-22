@@ -5,10 +5,10 @@
 // $fancy-font: 'Lato', sans-serif;
 $fancy-font: 'Rochester', cursive;
 
-h1,h2,h3{
-	font-family: $fancy-font;
-	font-weight: 200;
-}
+// h1,h2,h3{
+// 	font-family: $fancy-font;
+// 	font-weight: 200;
+// }
 
 // body {
 // 	font-family: $fancy-font;
@@ -19,6 +19,8 @@ h1,h2,h3{
 /*header*/
 
 #logo{
+	font-family: $fancy-font;
+	font-weight: 200;
 	float: left;
 	
 	margin-left: 5px;
