@@ -43,7 +43,7 @@ RSpec.feature "Creating Comments", type: :feature do
 			expect(page).to have_content 'Open'
 		end
 		within("#comments") do
-			expect(page).to have_content "State: Open"
+			expect(page).to have_content "Open"
 		end
 	end
 
