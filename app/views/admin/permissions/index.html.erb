@@ -1,24 +1,34 @@
-<h2>Permissions for <%= @user.email %></h2>
-<%= form_tag admin_user_set_permissions_path, method: :put do %>
-	<table id='permissions' cellspacing='0'>
-		<thead>
-			<th>Project</th>
-			<% permissions.each do |name, text| %>
-				<th><%= text %></th>
-			<% end %>
-		</thead>
-		<tbody>
-			<% @projects.each do |project| %>
-				<tr class= "<%= cycle('odd', 'even') %>" id='project_<%= project.id %>' >
-					<td><%= project.name %></td>
-					<% permissions.each do |name, text| %>
-						<td>
-							<%= check_box_tag "permissions[#{project.id}][#{name}]",	@ability.can?(name.to_sym, project), @ability.can?(name.to_sym, project) %>
-						</td>
-					<% end %>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<%= submit_tag 'Update' %>
-<% end %>
+<div class="row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Permissions for <%= @user.email %>
+			</div>
+			<%= form_tag admin_user_set_permissions_path, method: :put do %>
+				<table id='permissions' cellspacing='0'class="table">
+					<thead>
+						<th>Project</th>
+						<% permissions.each do |name, text| %>
+							<th><%= text %></th>
+						<% end %>
+					</thead>
+					<tbody>
+						<% @projects.each do |project| %>
+							<tr class= "<%= cycle('odd', 'even') %>" id='project_<%= project.id %>' >
+								<td><%= project.name %></td>
+								<% permissions.each do |name, text| %>
+									<td>
+										<%= check_box_tag "permissions[#{project.id}][#{name}]",	@ability.can?(name.to_sym, project), @ability.can?(name.to_sym, project) %>
+									</td>
+								<% end %>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+				<%= submit_tag 'Update' , class: 'btn btn-default btn-primary' %>
+			<% end %>			
+		</div>
+	</div>
+</div>
+
+
