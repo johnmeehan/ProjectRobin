@@ -1,9 +1,12 @@
+
 require 'rails_helper'
 
 RSpec.feature "CreatingTickets", type: :feature do
   before do
     project = FactoryGirl.create(:project)
     user = FactoryGirl.create(:user)
+    state = FactoryGirl.create(:state, name: "New", default: true)
+
     define_permission!(user, "view", project)
     define_permission!(user, "create tickets", project)
     @email = user.email
@@ -20,6 +23,9 @@ RSpec.feature "CreatingTickets", type: :feature do
     expect(page).to have_content("Ticket has been created.")
     within "#ticket #author" do
       expect(page).to have_content("Created by #{@email}")
+    end
+    within ".state" do 
+      expect(page).to have_content("New")
     end
   end
 
@@ -52,7 +58,8 @@ RSpec.feature "CreatingTickets", type: :feature do
 
     expect(page).to have_content 'Ticket has been created.'
 
-    within("#ticket .assets") do
+    # within("#ticket .assets") do
+    within(".assets") do
       expect(page).to have_content 'speed.txt'
       expect(page).to have_content 'spin.txt'
       # expect(page).to have_content 'gradient.txt'

@@ -14,6 +14,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = @project.tickets.build(ticket_params)
     @ticket.user = current_user
+    @ticket.state_id = State.find_by(default: true).id
     if @ticket.save
       flash[:notice] = "Ticket has been created."
       redirect_to [@project, @ticket]
@@ -49,7 +50,7 @@ class TicketsController < ApplicationController
 
   private
   def ticket_params
-    params.require(:ticket).permit(:title, :description, assets_attributes: [:asset])
+    params.require(:ticket).permit(:title, :description, :state_id, assets_attributes: [:asset])
   end
   
   def set_project
