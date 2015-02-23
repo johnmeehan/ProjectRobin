@@ -4,8 +4,8 @@ ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'   # Will need to uncomment this to precompile assets before push
-gem 'pg'
+
+gem 'pg', group: :production
 gem 'puma', '~> 2.11.1'
 gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
@@ -47,6 +47,8 @@ gem 'pry-rails', :group => :development
 
 gem 'bcrypt', '~> 3.1.10'
 group :development, :test do
+  gem 'sqlite3'  
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
