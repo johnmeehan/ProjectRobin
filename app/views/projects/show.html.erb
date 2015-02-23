@@ -1,33 +1,43 @@
 <% title(@project.name, "Projects") %>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class='panel-title'><%= @project.name %></h2>
+<div class="row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 class='panel-title'><%= @project.name %></h2>
+			</div>
+
+			<div class="panel-body">
+				<ul id="tickets" class='list-group'>
+				  <% @project.tickets.each do |ticket| %>
+					  <li class='list-group-item'>
+					  	<%= render ticket.state if ticket.state %>
+					    #<%= ticket.id %> - <%= link_to ticket.title, [@project, ticket] %>
+					  </li>
+				  <% end %>
+				</ul>
+
+				<% authorized?(:"create tickets", @project) do %>
+					<%= link_to "New Ticket", new_project_ticket_path(@project) , class: "btn btn-success" %>
+				<% end %>
+			</div>
+		</div>
+
 	</div>
-	<div class="panel-body">
 
-		<ul id="tickets" class='list-group'>
-		  <% @project.tickets.each do |ticket| %>
-			  <li class='list-group-item'>
-			  	<%= render ticket.state if ticket.state %>
-			    #<%= ticket.id %> - <%= link_to ticket.title, [@project, ticket] %>
-			  </li>
-		  <% end %>
-		</ul>
+	<div class="col-md-4">
+		<% admins_only do %>
+			<div class="well well-lg">
+				<%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-info"  %>
 
-		<% authorized?(:"create tickets", @project) do %>
-			<%= link_to "New Ticket", new_project_ticket_path(@project) , class: "btn btn-success" %>
-		<% end %>
+
+				<%= link_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?"} , class: "btn btn-danger" %>
+			</div>
+		<% end %>	
 	</div>
-
 
 </div>
 
-<% admins_only do %>
-	<div class="well well-lg">
-		<%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-info"  %>
 
 
-		<%= link_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?"} , class: "btn btn-danger" %>
-	</div>
-<% end %>
+
 

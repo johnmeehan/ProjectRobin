@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>
-    <% if content_for?(:title)%>
-      <%= yield(:title) %>
-    <% else %>
-      ProjectRobin.org
-    <% end %>
-  </title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'favicon.ico' %>
-</head>
+  <head>
+    <title>
+      <% if content_for?(:title)%>
+        <%= yield(:title) %>
+      <% else %>
+        ProjectRobin.org
+      <% end %>
+    </title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'favicon.ico' %>
+  </head>
 
-<body>
-  
-  <%= render partial: 'layouts/header' %>
+  <body>
 
-  <div class="container">
-
-    <%= flash_messages %>
-
-    <%= yield %>
-  </div>
-  
-</body>
+    <div class="container">
+      <%= render partial: 'layouts/header' %>
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
+    
+  </body>
 </html>

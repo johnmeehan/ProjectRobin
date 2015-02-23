@@ -14,6 +14,11 @@ $fancy-font: 'Rochester', cursive;
 // 	font-family: $fancy-font;
 // 	font-weight: 400;
 // }
+body {
+  padding-top: 100px;  //push body down from header
+  padding-bottom: 40px; // put body up from footer
+  // background-color: #eee;
+}
 
 
 /*header*/
@@ -22,10 +27,10 @@ $fancy-font: 'Rochester', cursive;
 	font-family: $fancy-font;
 	font-weight: 200;
 	float: left;
-	
-	margin-left: 5px;
-	
-	line-height: 1;
+	font-size: 40px;
+	// margin-left: 5px;
+	// line-height: 1;
+	margin-top: 15px;
 }
 
 #logo:hover{
@@ -36,8 +41,18 @@ $fancy-font: 'Rochester', cursive;
 #logo-image{
 	display: inline-block;
 	float: left;
-	height: 40px;
-	padding: 5px;
+	height: 50px;
+	// padding: 5px;
 	margin-left: 5px;
-
 }
+
+
+// .nav .navbar-fixed-top .navbar-header .navbar-brand {
+// 	height: 80px;
+// }
+// .nav .navbar-nav .navbar-text{ 
+// 	margin-top: 15px;
+// 	height: 80px;
+// 	line-height: 40px;
+// }
+
