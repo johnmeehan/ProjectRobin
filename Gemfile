@@ -7,6 +7,7 @@ gem 'rails', '4.2.0'
 # gem 'sqlite3'   # Will need to uncomment this to precompile assets before push
 gem 'pg'
 gem 'puma', '~> 2.11.1'
+gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
