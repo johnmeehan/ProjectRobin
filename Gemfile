@@ -4,7 +4,7 @@ ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+# gem 'sqlite3'   # Will need to uncomment this to precompile assets before push
 gem 'pg'
 gem 'puma', '~> 2.11.1'
 # Use SCSS for stylesheets
