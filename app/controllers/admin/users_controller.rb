@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::BaseController
+  layout 'admin', only: [:index, :show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
     @users = User.order(:email)

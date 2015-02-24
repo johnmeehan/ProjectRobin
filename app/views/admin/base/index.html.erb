@@ -1,22 +1,21 @@
-<div class="row">
-	<div class="col-md-2">
-		<ul class="list-group">
-			<li class="list-group-item">
-				<%= link_to "Users", admin_users_path %>		
-			</li>	
-			<li class="list-group-item">
-				<%= link_to "States", admin_states_path %>		
-			</li>
-		</ul>
-	</div>	
-	<div class="col-md-10">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Administration
-			</div>
-			<div class="panel-body">
-				Welcome to ProjectRobin's Admin Lounge. Please enjoy your stay.			
-			</div>
-		</div>
-	</div>		
+<% content_for :title do %>
+	<%= title("Admin") %>
+<% end%>
+
+<% content_for :sidebar do %>
+	<li class="list-group-item">
+		<%= link_to "Users", admin_users_path %>		
+	</li>	
+	<li class="list-group-item">
+		<%= link_to "States", admin_states_path %>		
+	</li>
+<% end %>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Administration
+	</div>
+	<div class="panel-body">
+		Welcome to ProjectRobin's Admin Lounge. Please enjoy your stay.			
+	</div>
 </div>

@@ -1,4 +1,5 @@
 class Admin::StatesController < ApplicationController
+	layout 'admin', only: [:index]
 	def index
 		@states = State.all
 	end
