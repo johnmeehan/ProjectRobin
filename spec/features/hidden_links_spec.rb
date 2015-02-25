@@ -9,7 +9,7 @@ RSpec.feature 'HiddenLinks', type: :feature do
 
   context 'anonymous users' do
     scenario 'cannot see the new project link' do
-      visit '/'
+      visit projects_path
       assert_no_link_for 'New Project'
     end
 
@@ -27,7 +27,7 @@ RSpec.feature 'HiddenLinks', type: :feature do
   context 'regular user' do
     before { sign_in_as!(user) }
     scenario 'cannot see the New Project Link' do
-      visit '/'
+      visit projects_path
       assert_no_link_for 'New Project'
     end
 
@@ -92,7 +92,7 @@ RSpec.feature 'HiddenLinks', type: :feature do
   context 'Admin users' do
     before { sign_in_as!(admin) }
     scenario 'can see the New Project link' do
-      visit '/'
+      visit projects_path
       assert_link_for 'New Project'
     end
 

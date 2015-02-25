@@ -1,7 +1,8 @@
 # Feature helper to sign in via capybara
 module AuthenticationHelpers
   def sign_in_as!(user)
-    visit '/signin'
+    visit root_path
+    click_link 'Sign in'
     fill_in "Name", with: user.name
     fill_in "Password", with: user.password
     click_button 'Sign in'

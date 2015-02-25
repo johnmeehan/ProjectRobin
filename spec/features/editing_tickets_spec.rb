@@ -13,7 +13,7 @@ RSpec.feature "Editing Tickets", type: :feature do
     define_permission!(user, "view", project)
     define_permission!(user, "edit tickets", project)
     sign_in_as!(user)
-    visit root_path
+    visit projects_path
     click_link project.name
     click_link ticket.title
     click_link "Edit Ticket"

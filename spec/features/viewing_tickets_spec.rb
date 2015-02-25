@@ -10,7 +10,7 @@ RSpec.feature "ViewingTickets", type: :feature do
     internet_explorer = FactoryGirl.create(:ticket, project: internet_explorer, title: "Standards compliance", description: "Isn't a joke.")
     define_permission!(user, "view", internet_explorer)
     sign_in_as!(user)
-    visit '/'
+    visit projects_path
   end
 
   scenario "Viewing tickets for a given project" do

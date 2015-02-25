@@ -9,7 +9,7 @@ RSpec.feature "Creating Comments", type: :feature do
 	  define_permission!(user, "view", project)
 
 	  sign_in_as!(user)
-	  visit root_path
+	  visit projects_path
 	  click_link project.name
 	end
 

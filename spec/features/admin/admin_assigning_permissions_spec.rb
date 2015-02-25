@@ -72,7 +72,7 @@ RSpec.feature "Admin::AssigningPermissions", type: :feature do
 		  expect(page).to have_content("Ticket has been deleted.")
 		end
 
-		scenario 'Changing states for a ticket', js: true do
+		scenario 'Changing states for a ticket' do
 		  check_permission_box "view", project
 		  check_permission_box "change_states", project
 		  check_permission_box "create_tickets", project
@@ -89,9 +89,6 @@ RSpec.feature "Admin::AssigningPermissions", type: :feature do
 
 		  expect(page).to have_content "Comment has been created."
 		  expect(page).to have_content "Opening this ticket."
-		  # within("#comments .state") do 
-		  # 	expect(page).to have_content("Open")
-		  # end
 		  within("#ticket .state") do 
 		  	expect(page).to have_content("Open")
 		  end

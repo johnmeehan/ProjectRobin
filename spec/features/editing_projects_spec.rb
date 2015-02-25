@@ -4,7 +4,7 @@ RSpec.feature "EditingProjects", type: :feature do
   before do
     sign_in_as!(FactoryGirl.create(:admin_user))
     FactoryGirl.create(:project, name: "TextMate 2")
-    visit "/"
+    visit projects_path
     click_link "TextMate 2"
     click_link "Edit Project"
   end

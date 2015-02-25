@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'pages/index'
+  root 'pages#index'
+  
   namespace :admin do
     root to: 'base#index'
     resources :users do 
@@ -13,7 +16,8 @@ Rails.application.routes.draw do
   end
   resources :files
   
-  root "projects#index"
+  # root "projects#index"
+
   resources :users
   resources :projects do
     resources :tickets

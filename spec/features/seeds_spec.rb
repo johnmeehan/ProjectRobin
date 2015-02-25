@@ -9,7 +9,8 @@ RSpec.feature "Seeds", type: :feature do
 	  # user = User.where(email: "admin@example.com").first!
 	  # project = Project.where(name: "Ticketee Beta").first!
 	  sign_in_as!(user)
-	  click_link "Ticketee Beta"
+	  # click_link "Ticketee Beta"
+	  click_link project.name
 	  click_link 'New Ticket'
 	  fill_in 'Title', with: "Comments with state"
 	  fill_in 'Description', with: 'Comments always have a state.'
