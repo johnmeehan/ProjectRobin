@@ -1,5 +1,5 @@
 
-<%= State.all.each do |state| %>
+<% State.all.each do |state| %>
 	.state_<%= state.name.parameterize %> {
 		@extend .label;
 		background: <%= state.background %>;
