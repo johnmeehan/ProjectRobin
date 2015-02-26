@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id                :integer          not null, primary key
+#  text              :text
+#  ticket_id         :integer
+#  user_id           :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  state_id          :integer
+#  previous_state_id :integer
+#
+
 class Comment < ActiveRecord::Base
 	belongs_to :ticket
 	belongs_to :user

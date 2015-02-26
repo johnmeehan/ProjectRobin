@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: assets
+#
+#  id           :integer          not null, primary key
+#  asset        :string
+#  ticket_id    :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  content_type :string
+#
+
 class Asset < ActiveRecord::Base
 
 	belongs_to :ticket

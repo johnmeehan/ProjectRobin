@@ -66,6 +66,7 @@ group :test do
   gem 'database_cleaner', '~> 1.4.0'
 end
 group :development do
+  gem 'annotate', '~> 2.6.5'
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
