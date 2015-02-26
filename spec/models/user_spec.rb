@@ -14,6 +14,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  context 'email' do 
+    it { should validate_uniqueness_of :email }
+  
+    it "must have correct email format" do 
+      expect(User.new(email: " 23~4.com")).to have(1).errors_on(:email)
+    end
+  end
 
   describe 'requires an email' do
     it "requires and email" do

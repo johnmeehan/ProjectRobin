@@ -1,7 +1,5 @@
 class FilesController < ApplicationController
 	before_filter :require_signin!
-
-
 	def new
 		@ticket  = Ticket.new
 		asset = @ticket.assets.build
