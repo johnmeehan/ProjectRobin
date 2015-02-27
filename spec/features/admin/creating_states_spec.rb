@@ -25,5 +25,19 @@ RSpec.feature "Creating States", type: :feature do
 
 	  expect(page).to have_css '.state_hold'
 	  expect(page).to have_text 'HOLD'
+	end	
+
+	scenario 'Edit a new State' do
+	  click_link "Admin"
+	  click_link "States"
+	  click_link 'Edit'
+	  fill_in 'Name', with: 'HOLD2'
+	  fill_in 'Background', with: 'yellow'
+	  fill_in 'Color', with: 'green'
+	  click_button 'Edit State'
+
+	  expect(page).to have_css '.state_hold2'
+	  expect(page).to have_text 'HOLD2'
 	end
+
 end

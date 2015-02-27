@@ -7,6 +7,10 @@ class Admin::StatesController < ApplicationController
 		@state = State.new
 	end
 
+	def edit
+		@state = State.find(params[:id])
+	end
+
 	def create
 		@state = State.new(state_params)
 		if @state.save
@@ -16,6 +20,18 @@ class Admin::StatesController < ApplicationController
 			flash[:alert] = "State has not been created."
 			render :new
 		end
+	end
+
+	def update	
+		#FIXME: changing state details not appearing in the CSS
+		@state = State.find(params[:id])
+		if @state.update(state_params)
+      flash[:notice] = "State has been updated."
+      redirect_to admin_states_path
+    else
+      flash[:alert] = "State has not been updated."
+      render action: "edit"
+    end
 	end
 
 	def make_default

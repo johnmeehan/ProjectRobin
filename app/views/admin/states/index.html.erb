@@ -20,8 +20,9 @@
 			<% for state in @states %>
 				<tr id="state_<%= state.name%>">
 					<td><%== render partial: "states/state", locals: {state: state} %></td>
-				  <td><%=  state.default? %></td>
+				  <td><%=  yesno(state.default?) %></td>
 					<td><%= link_to 'Make Default Starting State', make_default_admin_state_path(state) %></td>
+					<td><%= link_to "Edit",  edit_admin_state_path(state.id) %></td>
 				</tr>
 			<% end %>
 		</tbody>

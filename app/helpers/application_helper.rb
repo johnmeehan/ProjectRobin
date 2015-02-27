@@ -31,4 +31,8 @@ module ApplicationHelper
     end
     nil
   end
+
+  def yesno(b)
+    b ? "Yes" : "No"
+  end
 end
