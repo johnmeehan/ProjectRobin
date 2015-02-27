@@ -1,7 +1,26 @@
 <%= form_for [:admin, @state] do |f| %>
+	<% if @state.errors.any? %>
+     <div id="error_explanation">
+       <h2><%= pluralize(@state.errors.count, "error") %>
+         prohibited this State from being saved:</h2>
+       <ul>
+       <% @state.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+       <% end %>
+       </ul>
+     </div>
+  <% end %>
 	<div class="form-group">
 		<%= f.label :name %>
 		<%= f.text_field :name , class: 'form-control' %>
+	</div>	
+	<div class="form-group">
+		<%= f.label :background %>
+		<%= f.text_field :background , class: 'form-control', placeholder: "HTML colour codes #EEEFFF"%>
+	</div>	
+	<div class="form-group">
+		<%= f.label :color %>
+		<%= f.text_field :color , class: 'form-control', placeholder: "HTML colour codes #EEEFFF"%>
 	</div>
 	<%= f.submit  class: 'btn btn-default btn-primary'%>
 <% end %>

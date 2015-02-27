@@ -12,6 +12,11 @@
 #
 
 class State < ActiveRecord::Base
+	#TODO: Will need to validates its uniqueness within the scope of its owning project
+	validates_uniqueness_of :name 
+	validates_length_of :background, maximum: 7
+	validates_length_of :color, maximum: 7
+
 
 	def to_s
 		name

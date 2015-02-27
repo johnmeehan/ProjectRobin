@@ -7,12 +7,13 @@ RSpec.feature "Admin::ManagingStates", type: :feature do
 	end
 
 	scenario 'Marking a state as default' do
-	  visit root_path
+		visit root_path
 	  click_link "Admin"
 	  click_link "States"
-
+	  # within '#state_New' do
 	  within state_line_for('New') do
-	  	click_link 'Make Default'
+	  	# find('td').text('Make Default Starting State').first.
+	  	click_link('Make Default Starting State')
 	  end
 
 	  expect(page).to have_content "New is now the default state."

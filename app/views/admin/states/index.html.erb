@@ -8,11 +8,22 @@
 	<div class="panel-heading">
 		States
 	</div>
-
-	<ul id="states" class="list-group">
-		<% for state in @states %>
-			<li class="list-group-item" id="state_<%= state.id %>"><%= state.name %>
-			<%= link_to 'Make Default', make_default_admin_state_path(state) %></li>
-		<% end %>
-	</ul>
+	<table id="states" class="table">
+		<thead>
+			<tr>
+				<th>State</th>
+				<th>Default</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for state in @states %>
+				<tr id="state_<%= state.name%>">
+					<td><%== render partial: "states/state", locals: {state: state} %></td>
+				  <td><%=  state.default? %></td>
+					<td><%= link_to 'Make Default Starting State', make_default_admin_state_path(state) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 </div>
