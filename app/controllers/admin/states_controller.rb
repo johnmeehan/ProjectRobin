@@ -1,18 +1,18 @@
 class Admin::StatesController < ApplicationController
 	layout 'admin', only: [:index]
 	def index
-		@states = State.all
+		all_states
 	end
 	def new
-		@state = State.new
+		new_state
 	end
 
 	def edit
-		@state = get_state
+		get_state
 	end
 
 	def create
-		@state = State.new(state_params)
+		new_state(state_params)
 		if @state.save
 			flash[:notice] = "State has been created."
 			redirect_to admin_states_path
@@ -24,7 +24,7 @@ class Admin::StatesController < ApplicationController
 
 	def update	
 		#FIXME: changing state details not appearing in the CSS
-		@state = get_state
+		get_state
 		if @state.update(state_params)
       flash[:notice] = "State has been updated."
       redirect_to admin_states_path
@@ -35,7 +35,7 @@ class Admin::StatesController < ApplicationController
 	end
 
 	def make_default
-		@state = get_state
+		get_state
 		@state.default!
 		flash[:notice] = "#{@state.name} is now the default state."
 		redirect_to admin_states_path
@@ -47,6 +47,14 @@ class Admin::StatesController < ApplicationController
 		end
 
 		def get_state
-			State.find(params[:id])
+			@state = State.find(params[:id])
+		end
+
+		def new_state(values ={})
+			@state = State.new(values)
+		end
+
+		def all_states
+			@states = State.all
 		end
 end
