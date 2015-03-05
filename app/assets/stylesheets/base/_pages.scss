@@ -1,0 +1,19 @@
+body {
+  padding-top: 100px;  //push body down from header
+  padding-bottom: 40px; // put body up from footer
+  // background-color: #eee;
+}
+
+.centerfy img{
+    margin: 0 auto;
+}
+.centerfy{
+    text-align: center;
+}
+
+.jumbotron {
+	background-color: $lighter-grey;
+	color: red;
+	padding: 0 0 20px 0;
+	text-align: center;
+}
