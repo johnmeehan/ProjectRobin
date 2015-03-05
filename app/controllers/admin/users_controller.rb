@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   def index
-    @users = User.order(:email)
+    get_project_users
   end
 
   def new
@@ -11,10 +11,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    params = user_params.dup
-    params[:password_confirmation] = params[:password]
-    new_user(params)
-
+    create_new_user
     if @user.save
       flash[:notice] = "User has been created."
       redirect_to admin_users_path
@@ -66,6 +63,16 @@ class Admin::UsersController < Admin::BaseController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def get_project_users
+      @users = User.order(:email)
+    end
+
+    def create_new_user
+      params = user_params.dup
+      params[:password_confirmation] = params[:password]
+      new_user(params)
     end
 
     def new_user(params = {})
