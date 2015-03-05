@@ -1,18 +1,19 @@
 class Admin::UsersController < Admin::BaseController
   layout 'admin', only: [:index, :show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  
   def index
     @users = User.order(:email)
   end
 
   def new
-    @user = User.new
+    new_user
   end
 
   def create
     params = user_params.dup
     params[:password_confirmation] = params[:password]
-    @user = User.new(params)
+    new_user(params)
 
     if @user.save
       flash[:notice] = "User has been created."
@@ -30,10 +31,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-
     if params[:user][:password].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
+      remove_password_from_params
     end
     if @user.update(user_params)
       flash[:notice] = "User has been updated."
@@ -67,5 +66,14 @@ class Admin::UsersController < Admin::BaseController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def new_user(params = {})
+      @user = User.new(params)
+    end
+
+    def remove_password_from_params
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
     end
 end
