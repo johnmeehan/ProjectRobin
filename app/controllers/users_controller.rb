@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
+ 
   def new
-    @user = User.new
+    new_user
   end
 
   def create
-    @user = User.new(user_params)
-
+    new_user(user_params)
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You have signed up successfully."
@@ -16,15 +16,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    set_user
   end
 
   def edit
-    @user = User.find(params[:id])
+    set_user
   end
 
   def update
-    @user = User.find(params[:id])
+    set_user
     if @user.update(user_params)
       flash[:notice] = "Profile has been updated."
       redirect_to [@user]
@@ -38,4 +38,13 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation )
     end
+
+    def new_user(values = {})  
+      @user = User.new(values)
+    end
+
+    def set_user  
+      @user = User.find(params[:id])
+    end
+
 end
