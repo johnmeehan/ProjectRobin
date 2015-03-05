@@ -1,0 +1,13 @@
+<ul class="nav navbar-nav navbar-right">
+  <% if current_user %>
+    <li class="navbar-text">Signed in as <%= current_user.email %></li>
+    <li><%= link_to "Projects", projects_path %></li>
+      <% admins_only do %>
+        <li><%= link_to "Admin", admin_root_path %></li>
+      <% end %>
+    <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
+  <% else %>
+    <li><%= link_to "Sign up", new_user_path %></li>
+    <li><%= link_to "Sign in", signin_path %></li>
+  <% end %>
+</ul>
