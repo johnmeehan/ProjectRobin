@@ -13,7 +13,12 @@ body {
 
 .jumbotron {
 	background-color: $lighter-grey;
-	color: red;
-	padding: 0 0 20px 0;
+	
 	text-align: center;
+	h1 { font-family: $fancy-font; }
+	small { 
+		font-size: 20px;
+		// color: $dark-grey;
+		font-family: $font-san-serif ;
+		 }
 }
