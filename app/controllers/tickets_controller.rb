@@ -5,16 +5,16 @@ class TicketsController < ApplicationController
   before_action :authorize_create!, only: [:new, :create]
   before_action :authorize_update!, only: [:edit, :update]
   before_action :authorize_delete!, only: [:destroy]
+ 
   def new
     @ticket = @project.tickets.build
-    # 3.times { @ticket.assets.build }
     @ticket.assets.build
   end
 
   def create
     @ticket = @project.tickets.build(ticket_params)
     @ticket.user = current_user
-    @ticket.state_id = State.find_by(default: true).id
+    @ticket.state_id = starting_state
     if @ticket.save
       flash[:notice] = "Ticket has been created."
       redirect_to [@project, @ticket]
@@ -26,7 +26,7 @@ class TicketsController < ApplicationController
 
   def show
     @comment = @ticket.comments.build
-    @states = State.all 
+    @states =  ticket_states 
   end
 
   def edit
@@ -51,6 +51,16 @@ class TicketsController < ApplicationController
   private
   def ticket_params
     params.require(:ticket).permit(:title, :description, :state_id, assets_attributes: [:asset])
+  end
+
+  def ticket_states
+    #TODO: Each project will have its own states made by a user for a project.
+    State.all    
+  end
+
+  def starting_state
+    # A projects own set of states where the default is the starting state
+    State.find_by(default: true).id
   end
   
   def set_project
