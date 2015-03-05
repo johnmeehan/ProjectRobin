@@ -4,15 +4,15 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy ]
 
   def index
-    @projects = Project.for(current_user)
+    users_projects
   end
 
   def new
-    @project = Project.new
+     new_project
   end
 
   def create
-    @project = Project.new(project_params)
+    new_project(project_params)
     if @project.save
       flash[:notice] = "Project has been created."
       redirect_to @project
@@ -40,26 +40,33 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-
     flash[:notice] = "Project has been destroyed."
     redirect_to projects_path
   end
 
   private
 
-  def project_params
-    params.require(:project).permit(:name, :description)
-  end
-
-  def set_project
-    @project = if current_user.admin?
-      Project.find(params[:id])
-    else
-      Project.viewable_by(current_user).find(params[:id])
+    def project_params
+      params.require(:project).permit(:name, :description)
     end
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "The project you were looking for could not be found."
-    redirect_to projects_path
-  end
+
+    def users_projects
+      @projects = Project.for(current_user)
+    end
+
+    def new_project(values = {})
+      @project = Project.new(values)
+    end
+
+    def set_project
+      @project = if current_user.admin?
+        Project.find(params[:id])
+      else
+        Project.viewable_by(current_user).find(params[:id])
+      end
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The project you were looking for could not be found."
+      redirect_to projects_path
+    end
 
 end
