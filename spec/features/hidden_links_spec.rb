@@ -4,7 +4,7 @@ RSpec.feature 'HiddenLinks', type: :feature do
   # ensure the right links are shown to the right people
   let(:user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin_user) }
-  let(:project) { FactoryGirl.create(:project) }
+  let(:project) { FactoryGirl.create(:project, user_id: admin.id) }
   let(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
 
   context 'anonymous users' do

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Seeds", type: :feature do
 	# these 2 ets are used to get it to test the States part
 	let!(:user) { FactoryGirl.create(:admin_user) }
-  let!(:project) { FactoryGirl.create(:project) }
+  let!(:project) { FactoryGirl.create(:project, user_id: user.id) }
 	scenario 'The basics' do
 	  load Rails.root + "db/seeds.rb"
 	  # user = User.where(email: "admin@example.com").first!

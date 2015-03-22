@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "DeletingProjects", type: :feature do
   before do
-    sign_in_as!(FactoryGirl.create(:admin_user))
+    @admin = FactoryGirl.create(:admin_user)
+    sign_in_as!(@admin)
   end
   scenario "Deleting a project" do
-    FactoryGirl.create(:project, name: "TextMate 2")
+    FactoryGirl.create(:project, name: "TextMate 2", user_id: @admin.id )
 
     visit projects_path
     click_link "TextMate 2"

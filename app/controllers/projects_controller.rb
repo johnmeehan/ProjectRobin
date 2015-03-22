@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
 
   def create
     new_project(project_params)
+    @project.user_id = current_user.id if current_user
     if @project.save
       flash[:notice] = "Project has been created."
       redirect_to @project
@@ -56,6 +57,7 @@ class ProjectsController < ApplicationController
 
     def new_project(values = {})
       @project = Project.new(values)
+      # @project = current_user.projects.new(values)
     end
 
     def set_project

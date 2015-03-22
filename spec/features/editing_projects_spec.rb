@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "EditingProjects", type: :feature do
   before do
-    sign_in_as!(FactoryGirl.create(:admin_user))
-    FactoryGirl.create(:project, name: "TextMate 2")
+    @admin = FactoryGirl.create(:admin_user)
+    sign_in_as!(@admin)
+    FactoryGirl.create(:project, name: "TextMate 2", user_id: @admin.id)
     visit projects_path
     click_link "TextMate 2"
     click_link "Edit Project"
