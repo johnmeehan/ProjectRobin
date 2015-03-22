@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     new_user(user_params)
+    @user.toggle :admin  #A signed up user will be a paying user therefore default
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You have signed up successfully."

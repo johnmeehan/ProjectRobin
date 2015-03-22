@@ -10,5 +10,6 @@ RSpec.feature "SigningUps", type: :feature do
     click_button "Sign up"
 
     expect(page).to have_content("You have signed up successfully.")
+    expect(User.find_by(email: 'user@example.com')).to be_admin
   end
 end
