@@ -8,12 +8,11 @@ class ProjectsController < ApplicationController
   end
 
   def new
-     new_project
+    new_project
   end
 
   def create
-    new_project(project_params)
-    @project.user_id = current_user.id if current_user
+    @project = current_user.projects.new(project_params)
     if @project.save
       flash[:notice] = "Project has been created."
       redirect_to @project
@@ -48,7 +47,7 @@ class ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:name, :description)
+      params.require(:project).permit(:name, :description, :user_id)
     end
 
     def users_projects
