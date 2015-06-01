@@ -23,5 +23,5 @@ class Asset < ActiveRecord::Base
     if asset.present? && asset_changed?
       self.content_type = asset.file.content_type
     end
-    end
+  end
 end
