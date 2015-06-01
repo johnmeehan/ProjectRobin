@@ -1,8 +1,0 @@
-== ProjectRobin.org
-
-{<img src="https://coveralls.io/repos/johnmeehan/ProjectRobin/badge.svg" alt="Coverage Status" />}[https://coveralls.io/r/johnmeehan/ProjectRobin]
-
-{<img src="https://travis-ci.org/johnmeehan/ProjectRobin.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/johnmeehan/ProjectRobin]
-
-
-Simple Project Management Tool
