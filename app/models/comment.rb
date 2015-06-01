@@ -29,10 +29,10 @@ class Comment < ActiveRecord::Base
 
   def set_previous_state
     self.previous_state = ticket.state
-    end
+  end
 
   def set_ticket_state
     ticket.state = state
     ticket.save!
-    end
+  end
 end
