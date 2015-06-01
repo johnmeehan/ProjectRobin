@@ -11,8 +11,12 @@ script:
 - bundle exec rake assets:precompile
 - bundle exec rspec
 before_script:
+#- cp .sample.env .env
 - psql -c 'create database projectrobin_test' -U postgres
 after_success: coveralls
+branches:
+  only:
+    - master
 deploy:
   provider: heroku
   api_key:
@@ -20,3 +24,6 @@ deploy:
   app: projectrobin
   on:
     repo: johnmeehan/ProjectRobin
+notifications:
+  email:
+    - false
