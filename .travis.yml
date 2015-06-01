@@ -1,15 +1,22 @@
 language: ruby
 rvm:
-  - 2.2.2
+- 2.2.2
 env:
-  - DB=postgresql
+- DB=postgresql
 bundler_args: "--without development:production"
 cache: bundler
 sudo: false
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:migrate test
-  - bundle exec rake assets:precompile
-  - bundle exec rspec
+- RAILS_ENV=test bundle exec rake --trace db:migrate test
+- bundle exec rake assets:precompile
+- bundle exec rspec
 before_script:
-  - psql -c 'create database projectrobin_test' -U postgres
+- psql -c 'create database projectrobin_test' -U postgres
 after_success: coveralls
+deploy:
+  provider: heroku
+  api_key:
+    secure: Dx9dNsdoNWxSKJ5rS3i2l5UaCWzUPvTjcnb/zHSeriT5dxtRtNvTq8reggpei5Cp3YAmogoloHeIGjWbRGm8YQbNzg99KCu0IRjk0IPD3S+BVGvuT1oWSkc5MCgTvoKSTo5R6lNJ+sCGA+X+DgeFmu8M17B4VF0Go16AOe3Qxh6R+6DjW511pjIFe1dSbZrHlOzTiBwh4YrwT09L1JHZ4lqPQ1BbaaEhkD2Zn+2ONjKQSvH2q4dDf/wyQGKkSbAImkZ4/L6vqVAkLBljXpPfRCkVHNLZO5S9a95kbHlxwa3TrUVqQ/mIxItwVzl+MwrE96xEI3Lo19F9fgcOUuZfKqWbVcRu1DJ+/kegUwn7cQNZTusN/kWlyRwhtDRxbgOhOcTBw2M5k8sz3cKPBRcRqgEBEsdmigxE0ZkCiTK2G2lFQ99hxCT4WHqSaAuGU+/fHZUn3TAa2ToZxRYUymSkVN4v0JyRJnSLP+F1nStm6yYV+oAbbnMZ6/xsufovjHPmzMI/0PI0mNELsX/pGDsrGTBxSJ0DLRBQsFGYrWCh6o5udXNjXanJMLWh9NBU8D/RqxjY2ljJD8W4+uPWppHfGKJb5PWdHeD+6XX2D/kuVatBmEvCYdHr+JglqObfQ9TaSBkNS5hvf8tx2vhgTnRwAmrJHGySPT/k2FmnUGaWzM4=
+  app: projectrobin
+  on:
+    repo: johnmeehan/ProjectRobin
