@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'cancancan', '~> 1.10.1'
 gem 'carrierwave', '~> 0.10.0'
 gem 'rubocop', require: false
+gem 'coveralls', require: false
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
