@@ -1,6 +1,6 @@
-require 'coveralls'
 require 'simplecov'
-Coveralls.wear!('rails') # needst to be at the top
+require 'coveralls'
+# Coveralls.wear!('rails') # needst to be at the top
 
 SimpleCov.formatter = Coveralls::SimpleCov::Formatter
 SimpleCov.start do
