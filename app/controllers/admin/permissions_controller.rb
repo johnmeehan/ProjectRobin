@@ -22,5 +22,5 @@ class Admin::PermissionsController < Admin::BaseController
 
   def set_user
     @user = User.find(params[:user_id])
-      end
+  end
 end

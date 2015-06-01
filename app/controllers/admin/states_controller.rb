@@ -46,17 +46,17 @@ class Admin::StatesController < ApplicationController
 
   def state_params
     params.require(:state).permit(:name, :background, :color)
-    end
+  end
 
   def get_state
     @state = State.find(params[:id])
-    end
+  end
 
   def new_state(values = {})
     @state = State.new(values)
-    end
+  end
 
   def all_states
     @states = State.all
-    end
+  end
 end
