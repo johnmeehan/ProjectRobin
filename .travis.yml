@@ -1,7 +1,14 @@
 language: ruby
+rvm:
+  - 2.2.2
+env:
+  - DB=postgresql
 bundler_args: "--without development:production"
 cache: bundler
 sudo: false
-script: bundle exec rspec
-rvm:
-  - 2.2.2
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+  - bundle exec rake assets:precompile
+  - bundle exec rspec
+before_script:
+  - psql -c 'create database projectrobin_test' -U postgres
