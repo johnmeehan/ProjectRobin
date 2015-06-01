@@ -3,18 +3,18 @@ module AuthenticationHelpers
   def sign_in_as!(user)
     visit root_path
     click_link 'Sign in'
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
     click_button 'Sign in'
-    expect(page).to have_content("Signed in successfully.")
+    expect(page).to have_content('Signed in successfully.')
   end
 end
 
 # Controller helper to sign in by setting the session id
 module AuthHelpers
-    def sign_in(user)
-      session[:user_id] = user.id
-    end
+  def sign_in(user)
+    session[:user_id] = user.id
+  end
 end
 
 RSpec.configure do |c|

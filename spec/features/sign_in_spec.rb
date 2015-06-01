@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "SignIn", type: :feature do
-  scenario "signing in via form" do
+RSpec.feature 'SignIn', type: :feature do
+  scenario 'signing in via form' do
     user = FactoryGirl.create(:user)
     visit root_path
     click_link 'Sign in'
@@ -9,6 +9,6 @@ RSpec.feature "SignIn", type: :feature do
     fill_in 'Password', with: user.password
     click_button 'Sign in'
 
-    expect(page).to have_content("Signed in successfully.")    
+    expect(page).to have_content('Signed in successfully.')
   end
 end

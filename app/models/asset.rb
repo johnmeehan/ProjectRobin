@@ -11,18 +11,17 @@
 #
 
 class Asset < ActiveRecord::Base
+  belongs_to :ticket
 
-	belongs_to :ticket
-	
-	mount_uploader :asset, AssetUploader
+  mount_uploader :asset, AssetUploader
 
-	before_save :update_content_type
+  before_save :update_content_type
 
-	private
+  private
 
-		def update_content_type
-			if asset.present? && asset_changed?
-				self.content_type = asset.file.content_type
-			end
-		end
+  def update_content_type
+    if asset.present? && asset_changed?
+      self.content_type = asset.file.content_type
+    end
+    end
 end

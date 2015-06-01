@@ -12,7 +12,7 @@
 #
 
 FactoryGirl.define do
-	factory :state do 
-		name "state"
-	end
+  factory :state do
+    name 'state'
+  end
 end

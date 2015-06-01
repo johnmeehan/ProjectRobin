@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
   before_action :authorize_create!, only: [:new, :create]
   before_action :authorize_update!, only: [:edit, :update]
   before_action :authorize_delete!, only: [:destroy]
- 
+
   def new
     @ticket = @project.tickets.build
     @ticket.assets.build
@@ -16,17 +16,17 @@ class TicketsController < ApplicationController
     @ticket.user = current_user
     @ticket.state_id = starting_state
     if @ticket.save
-      flash[:notice] = "Ticket has been created."
+      flash[:notice] = 'Ticket has been created.'
       redirect_to [@project, @ticket]
     else
-      flash[:alert] = "Ticket has not been created."
-      render "new"
+      flash[:alert] = 'Ticket has not been created.'
+      render 'new'
     end
   end
 
   def show
     @comment = @ticket.comments.build
-    @states =  ticket_states 
+    @states =  ticket_states
   end
 
   def edit
@@ -34,40 +34,41 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      flash[:notice] = "Ticket has been updated."
+      flash[:notice] = 'Ticket has been updated.'
       redirect_to [@project, @ticket]
     else
-      flash[:alert] = "Ticket has not been updated."
-      render action: "edit"
+      flash[:alert] = 'Ticket has not been updated.'
+      render action: 'edit'
     end
   end
 
   def destroy
     @ticket.destroy
-    flash[:notice] = "Ticket has been deleted."
+    flash[:notice] = 'Ticket has been deleted.'
     redirect_to @project
   end
 
   private
+
   def ticket_params
     params.require(:ticket).permit(:title, :description, :state_id, assets_attributes: [:asset])
   end
 
   def ticket_states
-    #TODO: Each project will have its own states made by a user for a project.
-    State.all    
+    # TODO: Each project will have its own states made by a user for a project.
+    State.all
   end
 
   def starting_state
     # A projects own set of states where the default is the starting state
     State.find_by(default: true).id
   end
-  
+
   def set_project
     # @project = Project.find(params[:project_id])
     @project = Project.for(current_user).find(params[:project_id])
   rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "The project you were looking for could not be found."
+    flash[:alert] = 'The project you were looking for could not be found.'
     redirect_to root_path
   end
 
@@ -76,23 +77,23 @@ class TicketsController < ApplicationController
   end
 
   def authorize_create!
-    if !current_user.admin? && cannot?("create tickets".to_sym, @project)
-      flash[:alert] = "You cannot create tickets on this project."
+    if !current_user.admin? && cannot?('create tickets'.to_sym, @project)
+      flash[:alert] = 'You cannot create tickets on this project.'
       redirect_to @project
     end
   end
 
   def authorize_update!
-    if !current_user.admin? && cannot?("edit tickets".to_sym, @project)
-      flash[:alert] = "You cannot edit tickets on this project."
-      redirect_to @project
-    end
-  end
-  def authorize_delete!
-    if !current_user.admin? && cannot?(:"delete tickets", @project)
-      flash[:alert] = "You cannot delete tickets from this project."
+    if !current_user.admin? && cannot?('edit tickets'.to_sym, @project)
+      flash[:alert] = 'You cannot edit tickets on this project.'
       redirect_to @project
     end
   end
 
+  def authorize_delete!
+    if !current_user.admin? && cannot?(:"delete tickets", @project)
+      flash[:alert] = 'You cannot delete tickets from this project.'
+      redirect_to @project
+    end
+  end
 end

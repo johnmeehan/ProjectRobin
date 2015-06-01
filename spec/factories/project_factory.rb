@@ -12,7 +12,7 @@
 
 FactoryGirl.define do
   factory :project do
-    name "Example Project"
-    description "Something awesome"
+    name 'Example Project'
+    description 'Something awesome'
   end
 end

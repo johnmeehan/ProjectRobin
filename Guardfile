@@ -22,7 +22,7 @@ clearing :on
 #  $ ln -s config/Guardfile .
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
-group :frontend do 
+group :frontend do
   guard 'livereload' do
     watch(%r{app/views/.+\.(erb|haml|slim)$})
     watch(%r{app/helpers/.+\.rb})
@@ -41,9 +41,9 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-group :backend do 
-  guard :rspec, cmd: "bin/rspec", all_after_pass: true, all_on_start: true  do
-    require "guard/rspec/dsl"
+group :backend do
+  guard :rspec, cmd: 'bin/rspec', all_after_pass: true, all_on_start: true  do
+    require 'guard/rspec/dsl'
     dsl = Guard::RSpec::Dsl.new(self)
 
     # Feel free to open issues for suggestions and improvements
@@ -65,9 +65,9 @@ group :backend do
 
     watch(rails.controllers) do |m|
       [
-        rspec.spec.("routing/#{m[1]}_routing"),
-        rspec.spec.("controllers/#{m[1]}_controller"),
-        rspec.spec.("acceptance/#{m[1]}")
+        rspec.spec.call("routing/#{m[1]}_routing"),
+        rspec.spec.call("controllers/#{m[1]}_controller"),
+        rspec.spec.call("acceptance/#{m[1]}")
       ]
     end
 
@@ -77,26 +77,24 @@ group :backend do
     watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
     # Capybara features specs
-    watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
+    watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
 
     # Turnip features and steps
     watch(%r{^spec/acceptance/(.+)\.feature$})
     watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-      Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+      Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
     end
   end
 
   guard 'annotate' do
-    watch( 'db/schema.rb' )
+    watch('db/schema.rb')
 
     # Uncomment the following line if you also want to run annotate anytime
     # a model file changes
-    #watch( 'app/models/**/*.rb' )
+    # watch( 'app/models/**/*.rb' )
 
     # Uncomment the following line if you are running routes annotation
     # with the ":routes => true" option
-    #watch( 'config/routes.rb' )
+    # watch( 'config/routes.rb' )
   end
 end
-
-

@@ -11,77 +11,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322185839) do
-
-  create_table "assets", force: :cascade do |t|
-    t.string   "asset"
-    t.integer  "ticket_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "content_type"
+ActiveRecord::Schema.define(version: 20_150_322_185_839) do
+  create_table 'assets', force: :cascade do |t|
+    t.string 'asset'
+    t.integer 'ticket_id'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
+    t.string 'content_type'
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "text"
-    t.integer  "ticket_id"
-    t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "state_id"
-    t.integer  "previous_state_id"
+  create_table 'comments', force: :cascade do |t|
+    t.text 'text'
+    t.integer 'ticket_id'
+    t.integer 'user_id'
+    t.datetime 'created_at',        null: false
+    t.datetime 'updated_at',        null: false
+    t.integer 'state_id'
+    t.integer 'previous_state_id'
   end
 
-  create_table "permissions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "thing_id"
-    t.string   "thing_type"
-    t.string   "action"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'permissions', force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'thing_id'
+    t.string 'thing_type'
+    t.string 'action'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
+  create_table 'projects', force: :cascade do |t|
+    t.string 'name'
+    t.string 'description'
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
+    t.integer 'user_id'
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+  add_index 'projects', ['user_id'], name: 'index_projects_on_user_id'
 
-  create_table "states", force: :cascade do |t|
-    t.string   "name"
-    t.string   "color"
-    t.string   "background"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "default",    default: false
+  create_table 'states', force: :cascade do |t|
+    t.string 'name'
+    t.string 'color'
+    t.string 'background'
+    t.datetime 'created_at',                 null: false
+    t.datetime 'updated_at',                 null: false
+    t.boolean 'default',    default: false
   end
 
-  create_table "tickets", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "project_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
-    t.integer  "state_id"
+  create_table 'tickets', force: :cascade do |t|
+    t.string 'title'
+    t.text 'description'
+    t.integer 'project_id'
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
+    t.integer 'user_id'
+    t.integer 'state_id'
   end
 
-  add_index "tickets", ["project_id"], name: "index_tickets_on_project_id"
-  add_index "tickets", ["state_id"], name: "index_tickets_on_state_id"
-  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
+  add_index 'tickets', ['project_id'], name: 'index_tickets_on_project_id'
+  add_index 'tickets', ['state_id'], name: 'index_tickets_on_state_id'
+  add_index 'tickets', ['user_id'], name: 'index_tickets_on_user_id'
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "admin",           default: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at',                      null: false
+    t.datetime 'updated_at',                      null: false
+    t.boolean 'admin',           default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-
+  add_index 'users', ['email'], name: 'index_users_on_email', unique: true
 end

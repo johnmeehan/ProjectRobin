@@ -14,15 +14,15 @@ class Project < ActiveRecord::Base
   validates :name, presence: true
   has_many :tickets, dependent: :delete_all
   has_many :permissions, as: :thing
-  belongs_to :user 
+  belongs_to :user
 
-  scope :viewable_by, ->(user) {
-  	joins(:permissions).where(permissions: { action: 'view', user_id: user.id })
+  scope :viewable_by, lambda { |user|
+    joins(:permissions).where(permissions: { action: 'view', user_id: user.id })
   }
 
   scope :for, ->(user) do
     # user.admin? ? Project.all : Project.viewable_by(user)
-    user.admin? ? user.projects  : Project.viewable_by(user)
+    user.admin? ? user.projects : Project.viewable_by(user)
     # Project.where( user_id: user.id)  +  Project.viewable_by(user)
     # user.projects  +  Project.viewable_by(user)
   end

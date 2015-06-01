@@ -1,39 +1,39 @@
 require 'rails_helper'
 
-RSpec.feature "Editing Tickets", type: :feature do
-  let!(:project){ FactoryGirl.create(:project) }
+RSpec.feature 'Editing Tickets', type: :feature do
+  let!(:project) { FactoryGirl.create(:project) }
   let!(:user)   { FactoryGirl.create(:user) }
   let!(:ticket) do
-     ticket = FactoryGirl.create(:ticket, project: project, user: user)
-     ticket.update(user: user)
-     ticket
-   end
+    ticket = FactoryGirl.create(:ticket, project: project, user: user)
+    ticket.update(user: user)
+    ticket
+  end
 
   before do
-    define_permission!(user, "view", project)
-    define_permission!(user, "edit tickets", project)
+    define_permission!(user, 'view', project)
+    define_permission!(user, 'edit tickets', project)
     sign_in_as!(user)
     visit projects_path
     click_link project.name
     click_link ticket.title
-    click_link "Edit Ticket"
+    click_link 'Edit Ticket'
   end
 
-  scenario "Updating a ticket" do
-    fill_in "Title", with: "Make it really shiny!"
-    click_button "Update Ticket"
+  scenario 'Updating a ticket' do
+    fill_in 'Title', with: 'Make it really shiny!'
+    click_button 'Update Ticket'
 
-    expect(page).to have_content "Ticket has been updated."
+    expect(page).to have_content 'Ticket has been updated.'
 
-    within("#ticket h2") do
-      expect(page).to have_content("Make it really shiny!")
+    within('#ticket h2') do
+      expect(page).to have_content('Make it really shiny!')
     end
     expect(page).to_not have_content ticket.title
   end
 
-  scenario "Updated a ticket with invalid information" do
-    fill_in "Title", with: ""
-    click_button "Update Ticket"
-    expect(page).to have_content("Ticket has not been updated.")
+  scenario 'Updated a ticket with invalid information' do
+    fill_in 'Title', with: ''
+    click_button 'Update Ticket'
+    expect(page).to have_content('Ticket has not been updated.')
   end
 end

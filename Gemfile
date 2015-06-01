@@ -4,11 +4,12 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 gem 'pg', group: :production
 gem 'puma', '~> 2.11.1'
-gem 'rails_12factor', group: :production  
+gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 5.0.1'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'cancancan', '~> 1.10.1'
 gem 'carrierwave', '~> 0.10.0'
+gem 'rubocop', require: false
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -38,7 +39,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.10'
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'sqlite3'  
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views

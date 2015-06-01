@@ -2,7 +2,7 @@ module ApplicationHelper
   def title(*parts)
     unless parts.empty?
       content_for :title do
-        (parts << "ProjectRobin").join(" - ")
+        (parts << 'ProjectRobin').join(' - ')
       end
     end
   end
@@ -15,11 +15,11 @@ module ApplicationHelper
     block.call if can?(permission.to_sym, thing) || current_user.try(:admin?)
   end
 
-  def bootstrap_class_for flash_type
-    { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
+  def bootstrap_class_for(flash_type)
+    { success: 'alert-success', error: 'alert-danger', alert: 'alert-warning', notice: 'alert-info' }[flash_type.to_sym] || flash_type.to_s
   end
 
-  def flash_messages(opts = {})
+  def flash_messages(_opts = {})
     flash.each do |msg_type, message|
       concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} alert-dismissible", role: 'alert') do
         concat(content_tag(:button, class: 'close', data: { dismiss: 'alert' }) do
@@ -33,6 +33,6 @@ module ApplicationHelper
   end
 
   def yesno(b)
-    b ? "Yes" : "No"
+    b ? 'Yes' : 'No'
   end
 end

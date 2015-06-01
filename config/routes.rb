@@ -1,21 +1,21 @@
 Rails.application.routes.draw do
   get 'pages/index'
   root 'pages#index'
-  
+
   namespace :admin do
     root to: 'base#index'
-    resources :users do 
+    resources :users do
       resources :permissions
-      put "permissions", to: "permissions#set", as: "set_permissions"
+      put 'permissions', to: 'permissions#set', as: 'set_permissions'
     end
-    resources :states do 
-      member do 
+    resources :states do
+      member do
         get :make_default
       end
     end
   end
   resources :files
-  
+
   # root "projects#index"
 
   resources :users
@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  get '/signin', to: "sessions#new"
-  post '/signin', to: "sessions#create"
+  get '/signin', to: 'sessions#new'
+  post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
