@@ -21,9 +21,9 @@ class FilesController < ApplicationController
 
   def new_file
     @ticket  = Ticket.new
-    end
+  end
 
   def get_asset
     Asset.find(params[:id])
-    end
+  end
 end
