@@ -9,8 +9,8 @@
 LIVE:  [ProjectRobin.org](http://www.projectrobin.org)
 
 <ul>
-  <li>Ruby 2.2.2
-  <li>Rails 4.2.1
+  <li>Ruby 2.2.3
+  <li>Rails 4.2.4
   <li>Postgres
   <li>Puma
 

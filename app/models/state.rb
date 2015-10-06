@@ -8,7 +8,7 @@
 #  background :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  default    :boolean          default("f")
+#  default    :boolean          default(FALSE)
 #
 
 class State < ActiveRecord::Base
